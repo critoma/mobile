@@ -1,0 +1,120 @@
+////JCOP APDUs.../////////////////////////////////////
+
+/terminal "winscard:4|Gemplus USB Smart Card Reader 0"
+/terminal "winscard:4|OMNIKEY CardMan 5x21 0"
+
+/atr
+//files must be selected in this order
+
+//select MF
+/send A0A40000023F00
+  <= 9F 1A                                              ..
+Status: 0x9F1A
+
+//select 1A byte content from MF
+/send A0C000001A
+ <= 00 00 11 E9 3F 00 01 00 00 00 00 00 0D 13 02 07    ....?...........
+    04 00 83 8A 83 8A 00 01 11 E9 90 00                ............
+Status: No Error
+
+
+//select TELECOM file DF
+/send A0A40000027F10
+ <= 9F 1A                                              ..
+Status: 0x9F1A
+
+
+//GET RESPONSE 1A bytes content from TELECOM FILE DF
+/send A0C000001A
+ <= 00 00 00 00 7F 10 02 00 00 00 00 00 0D 13 00 0F    ................
+    04 00 83 8A 83 8A 00 01 00 00 90 00                ............
+Status: No Error
+
+
+
+//authenticate CHV1/PIN P2 = 01 => CHV1 else P2 = 02 => CHV2
+
+/send A0200001082301000000000000
+<= 98 04                                              ..
+Status: Access condition not fulfilled/Authentication failed
+
+/send A02000010832333031FFFFFFFF
+ => A0 20 00 01 08 32 33 30 31 FF FF FF FF             . ...2301....
+ (50590 usec)
+ <= 90 00                                              ..
+Status: No Error
+
+//GOOD PIN: 1234
+
+/send A02000010831323334FFFFFFFF
+
+//select MSISDN file EF
+/send A0A40000026F40
+ <= 9F 1A                                              ..
+Status: 0x9F0F
+
+//GET RESPONSE for EF 6F40 file
+/send A0C000000F
+ <= 00 00 00 4E 6F 40 04 00 11 00 44 01 02 01 1A 90    ...No@....D.....
+    00                                                 .
+Status: No Error
+
+//read 09 content from the MSISDN file EF
+/send A0B0000009
+
+
+
+////////////////////////////////////////////////////////
+
+/terminal "winscard:4|Gemplus USB Smart Card Reader 0"
+/terminal "winscard:4|OMNIKEY CardMan 5x21 0"
+
+//ANswer 2 Reset
+/atr
+
+//First auth for IMSI with PIN 1234
+/send A02000010831323334FFFFFFFF
+=> A0 20 00 01 08 31 32 33 34 FF FF FF FF             . ...0000....
+ (65986 usec)
+ <= 90 00                                              ..
+Status: No Error
+
+//select DF GSM - select EF 7F20 file
+/send A0A40000027F20
+ => A0 A4 00 00 02 7F 20                               ...... 
+ (51210 usec)
+ <= 9F 1A      
+
+//GET RESPONSE  for EF 7F20
+/send A0C000001A
+ => A0 C0 00 00 1A                                     .....
+ (13067 usec)
+ <= 00 00 00 00 7F 20 02 00 00 00 00 00 0D 13 00 19    ..... ..........
+    04 00 83 8A 83 8A 00 03 00 00 90 00                ............
+Status: No Error
+
+//select EF IMSI - 6F07
+/send A0A40000026F07
+=> A0 A4 00 00 02 6F 07                               .....o.
+ (29702 usec)
+ <= 9F 0F                                              ..
+Status: 0x9F0F
+
+//GET RESPONSE for EF 6F07 file
+/send A0C000000F
+ => A0 C0 00 00 0F                                     .....
+ (10837 usec)
+<= 00 00 00 09 6F 07 04 00 14 00 14 01 01 00 00 90    ....o...........
+    00                                                 .
+Status: No Error
+
+//READ BINARY from EF 6F07 - IMSI
+//IMSI = 2962100425582677
+/send A0B0000009
+ => A0 B0 00 00 09                                     .....
+ (21796 usec)
+ <= 08 29 62 10 04 25 58 26 77 90 00                   .)b..%X&w..
+Status: No Error
+
+//08 is IMSI length, the IMSI value: 2962100425582677
+
