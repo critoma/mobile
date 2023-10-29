@@ -1,23 +1,163 @@
-// https://pl.kotl.in/pzn9O-r0l
-
 package eu.ism.kt
 
+// https://pl.kotl.in/H2y34z35l
 
-class MyISMClass {
-    private var name: String = "This is a String field within class MyISMClass"
-    
-    // https://stackoverflow.com/questions/55356837/what-is-the-difference-between-init-block-and-constructor-in-kotlin
-    init {
-        println("\n MyISMClass init block -> " + this)
-    }
-    
-    fun printMe() {
-        print("\n This object = " + this + " has field name = " + this.name)
+// interface:
+
+interface ExampleInterface  {
+    var myVar: Int             // abstract property
+   	fun absMethod(): String    // abstract method
+   
+   	fun hello() {
+    	println("Hello there, Welcome to Default Method in the interface!")
     }
 }
 
+class InterfaceImpl : ExampleInterface {
+   	override var myVar: Int = 25
+   	override fun absMethod() = "Happy Learning "
+    // hello() meth is not override here
+}
+
+fun main() {
+   	val obj = InterfaceImpl()
+   	println("My Variable Value is = ${obj.myVar}")
+   	print("Calling hello(): ")
+   	obj.hello()
+   
+   	print("Message from the Website-- ")
+   	println(obj.absMethod())
+}
+
+
+/*
+// complex inheritance
+open class Vehicle {
+    private var weight: Float
+    var weightProperty: Float
+    	get() = weight
+    	set(value) { weight = value }
+    
+    constructor(weight: Float = 0.0f) {
+        this.weight = weight
+    }
+    
+    open fun printMe():String {
+        val r:String = "Vehicle class - weight = " + this.weight
+        println(r)
+        return r
+    }
+    
+}
+
+class Auto: Vehicle {
+    
+    private var doorsNo: Int
+    var doorsNoProperty: Int
+    	get() = doorsNo
+    	set(value) { doorsNo = value }
+    
+    constructor(weight: Float = 0.0f, doorsNo: Int = 0):super(weight) {
+        this.doorsNo = doorsNo
+    }
+    
+    override fun printMe():String {
+        val r:String = "Auto class - weight = " + this.weightProperty + ", doorsNo = " + this.doorsNo
+        println(r)
+        return r
+    }
+}
+
+class Plane: Vehicle {
+    private var capacity: Float
+    var capacityProperty: Float
+    	get() = capacity
+    	set(value) { capacity = value }
+    
+    private var enginesNo: Int
+    
+    constructor(weight: Float = 0.0f, capacity: Float = 0.0f, enginesNo: Int = 0) : super(weight) {
+        this.capacity = capacity
+        this.enginesNo = enginesNo
+    }
+    
+    override fun printMe():String {
+        val r:String = "Plane class - w = " + this.weightProperty + ", capacity = " + capacity + 
+               ", enginesNo = " + enginesNo
+        println(r)
+        return r
+    }
+}
+
+fun main() {
+    var a = Auto(1200.0f, 3)
+    var p = Plane(11500.0f, 300.0f, 4)
+    
+    a.printMe()
+    val ss:String = p.printMe()
+    println("ss = " + ss)
+    
+    var p2 = p
+    p2.capacityProperty = 2018.0f
+    println("p ---")
+    p.printMe()
+    println("p2 ---")
+    p2.printMe()
+    // ClassCastException v:Vehicle ; a -> v -> p
+    var v:Vehicle
+    v = a // a -> v
+    println("v ==> ")
+    v.printMe()
+    p = v as Plane // v -> p
+    p.printMe()
+    
+    println("When you are learning a language: " +
+            "\n 1. Translate the business logic reqs into logic dataflow" +
+            "\n 2. Generate simple sequential code for implementing the logic dataflow" +
+            "\n 3. Translate the code into proper paradigm: OOP, Functional programming, etc." +
+            "\n 4. Understand the synthax and the language internals with the debugger and memory layout")
+}
+*/
+
+/*
+// inheritance
+open class Vehicle {
+    open fun printMe() {
+        println("Vehicle class")
+    }
+}
+
+class Auto: Vehicle() {
+    override fun printMe() {
+        println("Auto class")
+    }
+}
+
+class Plane: Vehicle() {
+    override fun printMe() {
+        println("Plane class")
+    }
+}
+
+fun main() {
+    var a = Auto()
+    var p = Plane()
+    
+    a.printMe()
+    p.printMe()
+}
+*/
+
+// ####################################################
+    
+/*
 class MyTime : Cloneable {
     var h: Int
+     get() = field
+     set(value) {
+        field = value
+     }
+    
     var m: Int
     var s: Int
     
@@ -49,12 +189,44 @@ class MyTime : Cloneable {
     } 
 }
 
+//class MyISMClass {
+class MyISMClass (nameStrParam: String? = null) {
+    //private var name: String = "This is a String field within class MyISMClass"
+    private var name: String? = nameStrParam
+    
+    // https://stackoverflow.com/questions/55356837/what-is-the-difference-between-init-block-and-constructor-in-kotlin
+    init {
+        println("\n MyISMClass init block -> " + this)
+    }
+    
+    fun printMe() {
+        print("\n This object = " + this + " has field name = " + this.name)
+    }
+}
+
+class Human(val firstName: String, var age: Int) {
+    var message: String = "Hello! "
+    
+    constructor (name: String, age: Int, msg: String) : this(name, age) {
+        this.message = msg
+    }
+}
+
 fun main(args: Array<String>) {
     println("Second Kotlin program argument is = " + args[1])
+    
     val obj01 = MyISMClass()
     obj01.printMe()
     val obj02 = MyISMClass()
     obj02.printMe()
+    var obj03 = MyISMClass("Wow")
+    obj03.printMe()
+    
+    val objHuman01 = Human("Not Robot 01", 23)
+    println("\n" + "${objHuman01.message}, ${objHuman01.firstName} , your age is: ${objHuman01.age}")
+    var objHuman02 = Human("Not Robot 02", 25, "Bonjour! ")
+    println("\n" + "${objHuman02.message}, ${objHuman02.firstName} , your age is: ${objHuman02.age}")
+    
     println()
     
     var t1 = MyTime(10, 8, 43)
@@ -68,7 +240,23 @@ fun main(args: Array<String>) {
     var t4 = t2.clone() as MyTime
     t4.setMinutes(43)
     println("t2-> "+t2.serialize()+", t4-> "+t4.serialize())
+    
+    var t5: MyTime?
+    if(12 == t2.h) { // if(10 == t2.h) {
+        t5 = null
+        t2.h = 11 
+        println("t2-> "+t2.serialize())
+    } else {
+        t5 = MyTime()
+    }
+    //if(t5 != null)
+    //	println(t5.serialize())
+    println(t5?.serialize()) // t5?.let{}
 }
+*/
+
+// ##################################################
+
 
 /*
 fun mulBy2(x:Int): Int {
@@ -144,4 +332,4 @@ fun myMul(x:Int, y: Int): Int {
   eStr += "..."
   println("Hello - " + eStr)
   */
-// }
+//}
