@@ -22,6 +22,24 @@ secitc@cloudshell:~/kotlin/ktsrc$ java -cp .:../software/kotlinc/lib/* eu.ism.kt
 Hello, World...!
 secitc@cloudshell:~/kotlin/ktsrc$ kotlin eu.ism.kt.Test01Kt
 */
+
+/*
+Java Card Wallet (Ethereum / XRP) <--- NFC ---> Mobile UE (User Equipment) <--- RPC ---> Infura/Alchemy Eth Gateway / Ripple Main/TestNet BLOCKCHAIN:
+
+https://github.com/status-im/status-keycard
+https://keycard.tech/docs/
+https://get.keycard.tech/
+https://play.google.com/store/apps/details?id=im.status.ethereum&pli=1
+https://www.smartcardfocus.com/shop/ilp/se~71/java-and-programmable-smartcards/p/index.shtml
+
+https://xrpl.org/get-started-using-java.html | https://github.com/XRPLF/xrpl4j
+
+versus:
+
+https://www.emvco.com/specifications/ | https://www.emvco.com/emv-technologies/
+
+*/
+
 // https://pl.kotl.in/H2y34z35l
 
 
