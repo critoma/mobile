@@ -1,5 +1,27 @@
 package eu.ism.kt
 
+// https://shell.cloud.google.com/?show=ide%2Cterminal&authuser=3&fromcloudshell=true
+/*
+cd ~/kotlin/software
+# https://github.com/JetBrains/kotlin/releases
+# wget https://github.com/JetBrains/kotlin/releases/download/v1.7.20/kotlin-compiler-1.7.20.zip
+wget https://github.com/JetBrains/kotlin/releases/download/v1.9.10/kotlin-compiler-1.9.10.zip
+# unzip kotlin-compiler-1.7.20.zip
+unzip kotlin-compiler-1.9.20.zip
+cd ../ktsrc
+export KOTLIN_HOME=~/kotlin/software/kotlinc
+export PATH=.:$KOTLIN_HOME/bin:$PATH
+
+mkdir -p eu/ism/kt
+export KOTLIN_HOME=~/kotlin/software/kotlinc
+export PATH=.:$KOTLIN_HOME/bin:$PATH
+
+# kotlinc test01.kt
+
+secitc@cloudshell:~/kotlin/ktsrc$ java -cp .:../software/kotlinc/lib/* eu.ism.kt.Test01Kt
+Hello, World...!
+secitc@cloudshell:~/kotlin/ktsrc$ kotlin eu.ism.kt.Test01Kt
+*/
 // https://pl.kotl.in/H2y34z35l
 
 // interface:
