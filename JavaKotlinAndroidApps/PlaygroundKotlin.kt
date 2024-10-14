@@ -33,6 +33,10 @@ https://play.google.com/store/apps/details?id=im.status.ethereum&pli=1
 https://www.smartcardfocus.com/shop/ilp/se~71/java-and-programmable-smartcards/p/index.shtml
 
 https://xrpl.org/get-started-using-java.html | https://github.com/XRPLF/xrpl4j
+https://github.com/XRPLF/xrpl4j-sample/tree/main 
+https://github.com/XRPLF/xrpl4j-sample/blob/main/src/main/java/org/xrpl/xrpl4j/samples/SecureSigning.java
+https://github.com/XRPLF/xrpl4j-sample/blob/main/src/main/java/org/xrpl/xrpl4j/samples/SendXrp.java
+// mvn dependency:copy-dependencies -DoutputDirectory="./lib"
 
 versus:
 
@@ -453,3 +457,117 @@ fun myMul(x:Int, y: Int): Int {
   println("Hello - " + eStr)
   */
 //}
+
+/**
+ * You can edit, run, and share this code.
+ * play.kotlinlang.org
+ */
+/*
+package eu.ism.kt
+
+class MyTime : Cloneable {
+    public var h: Int = 0
+        public get() = field
+        public set(value) {
+            field = value
+        }
+    private var m: Int
+    public fun setMinutes(minutes: Int) {
+        this.m = minutes
+    }
+    var s: Int
+    
+    constructor() {
+        this.h = 0; this.m = 0; this.s = 0;
+    }
+    constructor(hours: Int, minutes: Int, seconds: Int) {
+        this.h = hours
+        this.m = minutes
+        this.s = seconds
+    }
+    fun serilizeStr(): String {
+        return "H:m:s = {%d}{%d}{%d}".format(h, m, s)
+    }
+    public override fun clone(): Any {
+        var t = super.clone() as MyTime
+        // var t = MyTime()
+        // t.h = this.h; t.m = this.m; t.s = this.s
+        return t
+    }
+}
+
+fun main(args: Array<String>) {
+    println("Second Kotlin program, args = " + args[1])
+    val t1 = MyTime(10, 40, 23)
+    println("t1 -> " + t1.serilizeStr())
+    val t2 = MyTime(10, 41, 56)
+    println("t2 -> " + t2.serilizeStr())
+    val t3 = t2
+    t3.setMinutes(43) // t3.m = 43
+    println("t3 -> " + t3.serilizeStr() + ", t2 -> " + t2.serilizeStr())
+	var t4 = t2.clone() as MyTime 
+    t4.setMinutes(55)
+    println("t4 -> " + t4.serilizeStr() + ", t2 -> " + t2.serilizeStr())
+    
+    var t5: MyTime?
+	// after 200 line of code
+	if (t2.h == 11) {
+		t5 = null
+	} else {
+		t5 = MyTime()
+	}
+    //println(t5.serilizeStr())
+	//if (t5 != null) //not necessary
+    //	println(t5.serilizeStr())
+        
+	println(t5?.serilizeStr())
+} // end main
+*/
+
+/*
+fun myMul(x: Int, y: Int):Int {
+    var r = 0 // var r: Int = 0
+    r = x * y
+    return r
+}
+
+fun main() {
+    println("Hello, world from Kotlin!!!")
+    var w: Int = 15
+    println("w = " + w)
+    w++
+    println("w = " + w)
+    println("w*2 = " + myMul(w, 2))
+    println("w*3 = " + myMul(w, 3))
+    
+    val a: Float = 5.1f
+    val b: Float = -3.9f
+    var max: Float
+    if(a > b) {
+        max = a
+    } else {
+        max = b
+    }
+    
+    val x: Int = 9
+    when(x) {
+        1 -> { println("x == 1") }
+        2 -> { println("x == 2") }
+        else -> { println("x != 1 && x != 2, x = " + x) }
+    }
+    
+    var z: Int = 0
+    while ( z < 3) {
+        println("z = " + z)
+        z++
+    }
+    
+    val items = listOf(9, -3, 11.5, -22.1)
+    for(i in 0 .. items.lastIndex) 
+    	println("items[" + i + "] is " + items[i])
+        
+    for(objIdx in items) {
+        println("objIdx = " + objIdx.toString())
+    }
+} // end main
+*/
